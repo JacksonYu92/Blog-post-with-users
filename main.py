@@ -40,7 +40,7 @@ class User(UserMixin, db.Model):
     # The "author" refers to the author property in the BlogPost class.
     posts = relationship("BlogPost", back_populates="author")
     comments = relationship("Comment", back_populates="comment_author")
-db.create_all()
+# db.create_all()
 
 class BlogPost(db.Model):
     __tablename__ = "blog_posts"
@@ -59,7 +59,7 @@ class BlogPost(db.Model):
     img_url = db.Column(db.String(250), nullable=False)
 
     comments = relationship("Comment", back_populates="parent_post")
-db.create_all()
+# db.create_all()
 
 class Comment(db.Model):
     __tablename__ = "comments"
@@ -71,7 +71,7 @@ class Comment(db.Model):
     post_id = db.Column(db.Integer, db.ForeignKey("blog_posts.id"))
     parent_post = relationship("BlogPost", back_populates="comments")
     text = db.Column(db.Text, nullable=False)
-db.create_all()
+# db.create_all()
 
 # Create admin-only decorator
 def admin_only(f):
